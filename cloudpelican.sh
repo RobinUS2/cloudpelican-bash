@@ -12,8 +12,8 @@ log() {
         # Endpoint for api calls
         ENDPOINT='https://api.cloudpelican.com/api/push/pixel'
 
-        # Message
-        MSG=$1
+        # Message (all parameters are used in one long string)
+        MSG=$@
         MSG_ENC="$(perl -MURI::Escape -e 'print uri_escape($ARGV[0]);' "$MSG")"
 
         # Hostname
