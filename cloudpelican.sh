@@ -9,10 +9,13 @@ TIMEOUT=3
 
 # Log method
 log() {
+        # Timestamp
+        TIMESTAMP=`date +%s%N | cut -b1-13`
+
         # Endpoint for api calls
         ENDPOINT='https://api.cloudpelican.com/api/push/pixel'
 
-        # Message (all parameters are used in one long string)
+        # Message
         MSG=$@
         MSG_ENC="$(perl -MURI::Escape -e 'print uri_escape($ARGV[0]);' "$MSG")"
 
@@ -21,10 +24,10 @@ log() {
         HOSTNAME_ENC="$(perl -MURI::Escape -e 'print uri_escape($ARGV[0]);' "$HOSTNAME")"
 
         # Full uri
-        FULL_URL="$ENDPOINT?t=$API_TOKEN&f[msg]=$MSG_ENC&f[host]=$HOSTNAME_ENC"
+        FULL_URL="$ENDPOINT?t=$API_TOKEN&f[msg]=$MSG_ENC&f[host]=$HOSTNAME_ENC&f[dt]=$TIMESTAMP"
 
         # Post data
-        wget -o /dev/null -nv --timeout=$TIMEOUT --dns-timeout=$TIMEOUT --connect-timeout=$TIMEOUT --read-timeout=$TIMEOUT $FULL_URL &
+        wget -o /dev/null -nv --timeout=$TIMEOUT --dns-timeout=$TIMEOUT --connect-timeout=$TIMEOUT --read-timeout=$
         WGET_PID=$!
 
         # Kill long running wget if there's is a network issue for example
@@ -40,4 +43,4 @@ log() {
 }
 
 # Test command
-log "Hello CloudPelican from bash"
+# log "Hello CloudPelican from bash"
