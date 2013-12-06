@@ -22,7 +22,6 @@ log() {
 
         # Full uri
         FULL_URL="$ENDPOINT?t=$API_TOKEN&f[msg]=$MSG_ENC&f[host]=$HOSTNAME_ENC"
-        echo $FULL_URL
 
         # Post data
         wget -o /dev/null -nv --timeout=$TIMEOUT --dns-timeout=$TIMEOUT --connect-timeout=$TIMEOUT --read-timeout=$TIMEOUT $FULL_URL &
