@@ -27,7 +27,7 @@ log() {
         FULL_URL="$ENDPOINT?t=$API_TOKEN&f[msg]=$MSG_ENC&f[host]=$HOSTNAME_ENC&f[dt]=$TIMESTAMP"
 
         # Post data
-        wget -o /dev/null -nv --timeout=$TIMEOUT --dns-timeout=$TIMEOUT --connect-timeout=$TIMEOUT --read-timeout=$
+        wget -o /dev/null -nv --timeout=$TIMEOUT --dns-timeout=$TIMEOUT --connect-timeout=$TIMEOUT --read-timeout=$TIMEOUT $FULL_URL &
         WGET_PID=$!
 
         # Kill long running wget if there's is a network issue for example
