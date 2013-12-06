@@ -5,6 +5,7 @@
 
 # Config
 API_TOKEN='PUT_YOUR_API_TOKEN_HERE'
+TIMEOUT=3
 
 # Log method
 log() {
@@ -24,7 +25,19 @@ log() {
         echo $FULL_URL
 
         # Post data
-        wget -o /dev/null -nv --timeout=3 $FULL_URL
+        wget -o /dev/null -nv --timeout=$TIMEOUT --dns-timeout=$TIMEOUT --connect-timeout=$TIMEOUT --read-timeout=$TIMEOUT $FULL_URL &
+        WGET_PID=$!
+
+        # Kill long running wget if there's is a network issue for example
+        COUNTER=0
+        while [[ -n $(ps -e | grep "$WGET_PID") && "$COUNTER" -lt "$TIMEOUT" ]]
+        do
+            sleep 1
+            COUNTER=$(($COUNTER+1))
+        done
+        if [[ -n $(ps -e | grep "$WGET_PID") ]]; then
+            kill -s SIGKILL "$WGET_PID"
+        fi
 }
 
 # Test command
