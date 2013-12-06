@@ -1,7 +1,7 @@
 #!/bin/bash
 # Author: Robin Verlangen
 # Very simple logging method for bash
-# Requires: perl, wget, hostname
+# Requires: perl, perl-URI, wget, hostname
 
 # Config
 API_TOKEN='PUT_YOUR_API_TOKEN_HERE'
