@@ -1,6 +1,6 @@
 #!/bin/bash
 # Author: Robin Verlangen
-# Very simpel logging method for bash
+# Very simple logging method for bash
 # Requires: perl, wget, hostname
 
 # Config
