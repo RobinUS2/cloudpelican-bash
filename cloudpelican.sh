@@ -8,7 +8,7 @@ API_TOKEN='PUT_YOUR_API_TOKEN_HERE'
 TIMEOUT=3
 
 # Log method
-log() {
+cloudpelican() {
         # Timestamp
         TIMESTAMP=`date +%s%N | cut -b1-13`
 
@@ -43,4 +43,4 @@ log() {
 }
 
 # Test command
-# log "Hello CloudPelican from bash"
+# cloudpelican "Hello CloudPelican from bash"
